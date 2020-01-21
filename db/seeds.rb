@@ -1,0 +1,1 @@
+Student.create(name: Faker::Name.name) 
