@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_190946) do
   end
 
   create_table "enrollments", force: :cascade do |t|
-    t.string "student_id"
+    t.integer "student_id"
     t.integer "course_id"
     t.string "available_courses"
     t.float "time_slots"
