@@ -5,6 +5,7 @@ class Interface
     def run
         welcome
         login_menu
+        main_menu
     end
 
     def welcome
@@ -37,7 +38,15 @@ class Interface
             choice_input = gets.chomp
             choice_option = [1,2,3]
 
-            case choice_option[0] == choice_input
+            if choice_input.to_i == choice_option[0]
+                puts "Here are all of your courses you're enrolled in"
+            elsif choice_input.to_i == choice_option[1]
+                puts "oks"
+            elsif choice_input.to_i == choice_option[2]
+                puts "okbro"
+            else 
+                puts main_menu
+            end 
     end 
 
     # def enroll 
