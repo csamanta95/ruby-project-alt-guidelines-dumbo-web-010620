@@ -12,6 +12,6 @@ cli.run
 #     student_object = cli.welcome
 # end 
 
-cli.students = student_object
+# cli.students = student_object
 
 
