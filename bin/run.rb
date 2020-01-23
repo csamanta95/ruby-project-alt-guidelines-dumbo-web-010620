@@ -3,12 +3,11 @@ require_relative '../config/environment'
 # puts "Hello student!"
 
 cli = Interface.new
-student_instance = cli.welcome
+student_object = cli.welcome
 # binding.pry 
-while !student_instance
+if !student_object
     system "clear"
     puts "Nice"
-    cli.welcome
+    # binding.pry
+    student_object = cli.welcome
 end 
-
-cli.students = student_instance
