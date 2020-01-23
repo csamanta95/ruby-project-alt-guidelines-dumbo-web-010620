@@ -23,12 +23,13 @@ class Interface
     def main_menu 
         system "clear"
         prompt.select("What would you like to do?") do |menu|
-            menu.choice "See all your courses", -> {self.student.list_courses}
-            menu.choice "See all available courses", -> {self.student}
+            menu.choice "See all your courses", -> {}
+            menu.choice "See all available courses", -> {Student.list_courses}
             menu.choice "Remove yourself from a course"
         end 
-    end 
+    end
 
+   
     # def enroll 
     #     puts "What is your name?"
     #     name = gets.chomp
@@ -52,5 +53,5 @@ class Interface
     #     input = prompt.ask('What is your name?', required: true)
     #     Student.change_student_enrollment
     # end
-
 end
+

@@ -26,15 +26,19 @@ class Student < ActiveRecord::Base
         
     end
 
+    def self.list_courses
+        course_names = Course.pluck(:subject)
+        course_names.each do |subject|
+            puts subject
+        end
+    end
+
 #     def enrollment_list
 #         puts Enrollment.all.map do |student|
 #             student.name
 #         end
 
-#         def courses_list
-#             puts Course.all.map do |student|
-#                 student.name
-#             end
+#         
 
 #         def delete_student_enrollment
 #             array= Enrollment.find_by(name:input)
