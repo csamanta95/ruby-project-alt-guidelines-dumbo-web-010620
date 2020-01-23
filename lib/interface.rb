@@ -1,32 +1,43 @@
 class Interface 
 
-    attr_accessor :prompt, :students
-
-    def initialize
-        @prompt = TTY::Prompt.new
-    end
+    # attr_accessor :prompt, :students
 
     def run
         welcome
-        main_menu 
+        login_menu
     end
 
     def welcome
         puts "Welcome to the Enrollment App."
-        answer = prompt.select("Are you a returning student, or new student?") do |menu|
-            menu.choice "New Student", -> {Student.new_student}
-            menu.choice "Returning Student", -> {Student.returning_student}
-    
+        sleep(2)
+    end     
+
+    def login_menu
+        puts "Please enter your name to begin"
+        @name_input = gets.chomp 
+        @student = Student.find_by("name LIKE?", "%#{@name_input}%")
+
+        if @student 
+            puts "Welcome back, #{@name_input}"
+            sleep(2)
+            system "clear"
+        elsif 
+            puts "Welcome to the Enrollment App #{@name_input}"
+            sleep(2)
+            Student.create(name: @name_input)
         end 
     end 
 
     def main_menu 
-        system "clear"
-        prompt.select("What would you like to do?") do |menu|
-            menu.choice "See all your courses", -> {self.student.list_courses}
-            menu.choice "See all available courses", -> {self.student}
-            menu.choice "Remove yourself from a course"
-        end 
+        puts "\nWhat would you like to do?
+            1. Check your courses.
+            2. Check all available courses for enrollment.
+            3. Remove yourself from a course."
+
+            choice_input = gets.chomp
+            choice_option = [1,2,3]
+
+            case choice_option[0] == choice_input
     end 
 
     # def enroll 

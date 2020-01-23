@@ -21,7 +21,7 @@ class Student < ActiveRecord::Base
         returning = gets.chomp
         Student.find_by("name LIKE?", "%#{returning}%")
         # Student.find_by(name: returning)
-        puts "Welcome back #{self.name}"
+        puts "Welcome back #{self}"
         # Student.find_by("name LIKE?", "%#{returning_student}%")
         
     end

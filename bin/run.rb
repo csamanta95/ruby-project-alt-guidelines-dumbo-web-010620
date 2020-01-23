@@ -4,14 +4,23 @@ require_relative '../config/environment'
 
 cli = Interface.new
 cli.run
-# binding.pry 
-# if !student_object
-#     system "clear"
-#     puts "Nice"
-#     # binding.pry
-#     student_object = cli.welcome
+# # student_object = cli.welcome
+# # # binding.pry 
+# # while !student_object
+# #     # system "clear"
+# #     # puts "Nice"
+# #     # binding.pry
+# #     cli.welcome
+# # end 
+# binding.pry
+
+# if @Student 
+#     returning_student
+# else 
+#     cli.welcome
 # end 
 
-cli.students = student_object
+
+# cli.student = student_object
 
 
