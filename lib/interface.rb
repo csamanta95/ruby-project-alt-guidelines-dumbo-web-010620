@@ -1,7 +1,5 @@
 class Interface 
 
-    # attr_accessor :prompt, :students
-
     def run
         welcome
         login_menu
@@ -19,11 +17,11 @@ class Interface
         @student = Student.find_by("name LIKE?", "%#{@name_input}%")
 
         if @student 
-            puts "Welcome back, #{@name_input}"
+            system"clear"
+            puts "Welcome back, #{@name_input.capitalize}"
             sleep(2)
-            system "clear"
-        elsif 
-            puts "Welcome to the Enrollment App #{@name_input}"
+        else
+            puts "Welcome to the Enrollment App, #{@name_input.capitalize}"
             sleep(2)
             Student.create(name: @name_input)
         end 
@@ -39,38 +37,31 @@ class Interface
             choice_option = [1,2,3]
 
             if choice_input.to_i == choice_option[0]
-                puts "Here are all of your courses you're enrolled in"
+                 if Enrollment.find_by(student_id: @student)  
+                    puts "Here are all your courses you're enrolled in"
+                        system "clear"
+                        enrolled_student
+                        main_menu
+                 else
+                    puts "You're not enrolled in any course."
+                    main_menu
+                 end
+
             elsif choice_input.to_i == choice_option[1]
-                puts "oks"
+                puts "Here are all available courses for enrollment"
+
             elsif choice_input.to_i == choice_option[2]
-                puts "okbro"
+                puts "Which course would you like to remove yourself from?"
+
             else 
-                puts main_menu
+                system "clear"
+                puts "Sorry I didn't get that."
+                main_menu
             end 
     end 
 
-    # def enroll 
-    #     puts "What is your name?"
-    #     name = gets.chomp
-    #     @name = Student.create(name: name)
-
-    #   end
-    #   def user_valid
-    #     if Student.find_by(name: name)
-    #         true 
-    #     else
-    #         false
-    #   end
-    # end
-
-    #   def delete 
-    #     input = prompt.ask('What is your name?', required: true)
-    #     Student.delete_student_enrollment
-    # end
-
-    # def change 
-    #     input = prompt.ask('What is your name?', required: true)
-    #     Student.change_student_enrollment
-    # end
-
+    def enrolled_student
+        student_enrollment = Enrollment.where(student_id: @student)
+        student_enrollment.map {|course_instance| course_instance.course}
+    end 
 end
