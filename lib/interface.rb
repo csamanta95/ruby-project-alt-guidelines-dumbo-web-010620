@@ -118,13 +118,15 @@ class Interface
     end
 
     def update_courses
-        puts enrolled_student
-        puts "Please enter the ID of the course you want to update"
         enrolled_student
+        puts "Please enter the ID of the course you want to update"
         answer = gets.chomp
-        puts "Please enter the subject you want to change to"
-        subject = gets.chomp.capitalize
-        @student.courses.find_by(answer).update(subject: subject)
+        system "clear"
+        sleep(2)
+        list_all_courses
+        puts "Please enter the subject ID you want to change to"
+        course_number = gets.chomp
+        @student.enrollments.find_by(answer).update(course_id: course_number)
         puts "Course has been updated"
         main_menu
     end
