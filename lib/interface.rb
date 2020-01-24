@@ -25,6 +25,7 @@ class Interface
             puts "Welcome to the Enrollment App, #{@name_input.capitalize}"
             sleep(2)
             Student.create(name: @name_input)
+            @student = Student.find_by("name LIKE?", "%#{@name_input}%")
         end 
     end 
 
@@ -63,6 +64,7 @@ class Interface
 
             elsif choice_input.to_i == choice_option[3]
                 update_courses
+
 
             elsif choice_input.to_i == choice_option[4]
                 system "clear"
@@ -118,6 +120,7 @@ class Interface
     def update_courses
         puts enrolled_student
         puts "Please enter the ID of the course you want to update"
+        enrolled_student
         answer = gets.chomp
         puts "Please enter the subject you want to change to"
         subject = gets.chomp.capitalize
