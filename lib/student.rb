@@ -5,26 +5,26 @@ class Student < ActiveRecord::Base
     # attr_accessor :name
 
 
-    def self.new_student 
-        puts "Please enter your name."
-        name = gets.chomp 
-        puts "Welcome, #{name}"
-        Student.create(name: name)
-        # puts "Welcome, #{self.name}"
+    # def self.new_student 
+    #     puts "Please enter your name."
+    #     name = gets.chomp 
+    #     puts "Welcome, #{name}"
+    #     Student.create(name: name)
+    #     # puts "Welcome, #{self.name}"
         
 
 
-    end 
+    # end 
 
-    def self.returning_student 
-        puts "Welcome back, please enter your name."
-        returning = gets.chomp
-        Student.find_by("name LIKE?", "%#{returning}%")
-        # Student.find_by(name: returning)
-        puts "Welcome back #{self}"
-        # Student.find_by("name LIKE?", "%#{returning_student}%")
+    # def self.returning_student 
+    #     puts "Welcome back, please enter your name."
+    #     returning = gets.chomp
+    #     Student.find_by("name LIKE?", "%#{returning}%")
+    #     # Student.find_by(name: returning)
+    #     puts "Welcome back #{self}"
+    #     # Student.find_by("name LIKE?", "%#{returning_student}%")
         
-    end
+    # end
 
 #     def enrollment_list
 #         puts Enrollment.all.map do |student|
