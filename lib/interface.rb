@@ -29,13 +29,14 @@ class Interface
 
     def main_menu 
         puts "\nWhat would you like to do?
-            1. Check your courses.
-            2. Check all available courses for enrollment.
-            3. Remove yourself from a course.
-            4. Exit"
+            1. Check your courses
+            2. Check all available courses for enrollment
+            3. Remove yourself from a course
+            4. Update your courses
+            5. Exit"
 
             choice_input = gets.chomp
-            choice_option = [1,2,3,4]
+            choice_option = [1,2,3,4,5]
 
             if choice_input.to_i == choice_option[0]
                  if Enrollment.find_by(student_id: @student)  
@@ -50,6 +51,7 @@ class Interface
 
             elsif choice_input.to_i == choice_option[1]
                 puts "Here are all available courses for enrollment."
+                sleep(2)
                 list_all_courses
                 puts "Which course would you like to enroll in?"
                 create_enrollment
@@ -59,11 +61,13 @@ class Interface
                 delete_enrollment
 
             elsif choice_input.to_i == choice_option[3]
+                update_courses
+
+            elsif choice_input.to_i == choice_option[4]
                 system "clear"
                 puts "Exiting."
                 sleep(2)
-                system "clear"
-                run 
+                exit 
 
             else 
                 system "clear"
@@ -107,6 +111,17 @@ class Interface
         answer = gets.chomp
         @student.courses.destroy(answer)
         puts "You have sucessfully been removed from the course."
+        main_menu
+    end
+
+    def update_courses
+        puts enrolled_student
+        puts "Please enter the ID of the course you want to update"
+        answer = gets.chomp
+        puts "Please enter the subject you want to change to"
+        subject = gets.chomp.capitalize
+        @student.courses.find_by(answer).update(subject: subject)
+        puts "Course has been updated"
         main_menu
     end
 end
