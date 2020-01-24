@@ -30,7 +30,7 @@ class Interface
     end 
 
     def main_menu 
-        puts "\nWhat would you like to do?
+        puts "What would you like to do?
             1. Check your courses
             2. Check all available courses for enrollment
             3. Remove yourself from a course
@@ -47,6 +47,7 @@ class Interface
                         enrolled_student
                         main_menu
                  else
+                    system "clear"
                     puts "You're not enrolled in any course."
                     main_menu
                  end
@@ -123,7 +124,7 @@ class Interface
 
     def update_courses
         enrolled_student
-        puts "Please enter the ID of the course you woudl like to update"
+        puts "Please enter the ID of the course you would like to update"
         answer = gets.chomp
         system "clear"
         sleep(2)
@@ -143,7 +144,8 @@ class Interface
         ######   ## ## ## ########  ##     ## ##       ##       ## ### ## ######   ## ## ##    ##       ##     ## ########  ########  
         ##       ##  #### ##   ##   ##     ## ##       ##       ##     ## ##       ##  ####    ##       ######### ##        ##        
         ##       ##   ### ##    ##  ##     ## ##       ##       ##     ## ##       ##   ###    ##       ##     ## ##        ##        
-        ######## ##    ## ##     ##  #######  ######## ######## ##     ## ######## ##    ##    ##       ##     ## ##        ##        "    
+        ######## ##    ## ##     ##  #######  ######## ######## ##     ## ######## ##    ##    ##       ##     ## ##        ##       
+         "    
                                                                                                                                                 
     end 
 end
