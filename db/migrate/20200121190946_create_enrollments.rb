@@ -4,8 +4,6 @@ class CreateEnrollments < ActiveRecord::Migration[5.2]
     create_table :enrollments do |t|
       t.integer  :student_id
       t.integer  :course_id
-      t.string   :available_courses
-      t.float    :time_slots
 
       t.timestamps
     end

@@ -4,12 +4,19 @@ Enrollment.destroy_all
 puts "Deleting old seeds"
 
 
-5.times do 
+8.times do 
     Student.create(name: Faker::Name.name) 
 end 
 puts "Added students"
 
-c1 = Course.create(subject: "Biology", description: "Monday - Wednesday, 09:00 - 11:00 AM", timeslot: 9)
+Course.create(subject: "Biology", description: "Monday - Wednesday, 09:00 - 11:00 AM")
+Course.create(subject: "Calculus", description: "Monday - Wednesday, 09:00 - 11:00 AM")
+Course.create(subject: "Software Engineering", description: "Monday - Wednesday, 09:00 - 11:00 AM")
+Course.create(subject: "Astronomy", description: "Monday - Wednesday, 09:00 - 11:00 AM")
+Course.create(subject: "English", description: "Monday - Wednesday, 09:00 - 11:00 AM")
 
 puts "Added courses"
-Enrollment.create(student_id: Student.all.sample.id, course_id: c1.id, available_courses: "Biology", time_slots: 9.30)
+Enrollment.create(student_id: Student.all.sample.id, course_id: Course.all.sample.id)
+Enrollment.create(student_id: Student.all.sample.id, course_id: Course.all.sample.id)
+Enrollment.create(student_id: Student.all.sample.id, course_id: Course.all.sample.id)
+Enrollment.create(student_id: Student.all.sample.id, course_id: Course.all.sample.id)

@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2020_01_21_190946) do
 
   create_table "courses", force: :cascade do |t|
     t.string "description"
-    t.float "timeslot"
     t.string "subject"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -23,15 +22,12 @@ ActiveRecord::Schema.define(version: 2020_01_21_190946) do
   create_table "enrollments", force: :cascade do |t|
     t.integer "student_id"
     t.integer "course_id"
-    t.string "available_courses"
-    t.float "time_slots"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|
     t.string "name"
-    t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

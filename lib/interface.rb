@@ -13,7 +13,7 @@ class Interface
 
     def login_menu
         puts "Please enter your name to begin"
-        @name_input = gets.chomp 
+        @name_input = gets.chomp
         @student = Student.find_by("name LIKE?", "%#{@name_input}%")
 
         if @student 
@@ -31,10 +31,11 @@ class Interface
         puts "\nWhat would you like to do?
             1. Check your courses.
             2. Check all available courses for enrollment.
-            3. Remove yourself from a course."
+            3. Remove yourself from a course.
+            4. Exit"
 
             choice_input = gets.chomp
-            choice_option = [1,2,3]
+            choice_option = [1,2,3,4]
 
             if choice_input.to_i == choice_option[0]
                  if Enrollment.find_by(student_id: @student)  
@@ -48,10 +49,21 @@ class Interface
                  end
 
             elsif choice_input.to_i == choice_option[1]
-                puts "Here are all available courses for enrollment"
+                puts "Here are all available courses for enrollment."
+                list_all_courses
+                puts "Which course would you like to enroll in?"
+                create_enrollment
 
             elsif choice_input.to_i == choice_option[2]
                 puts "Which course would you like to remove yourself from?"
+                delete_enrollment
+
+            elsif choice_input.to_i == choice_option[3]
+                system "clear"
+                puts "Exiting."
+                sleep(2)
+                system "clear"
+                run 
 
             else 
                 system "clear"
@@ -60,8 +72,41 @@ class Interface
             end 
     end 
 
-    def enrolled_student
-        student_enrollment = Enrollment.where(student_id: @student)
-        student_enrollment.map {|course_instance| course_instance.course}
+    def list_all_courses 
+      Course.all.map do |course_instance|
+        puts "---------------------------------------------------"
+        puts "Course ID: #{course_instance.id}."
+        puts "Course description: #{course_instance.description}"
+        puts "Course subject: #{course_instance.subject}"
+        puts "---------------------------------------------------"
+      end 
     end 
+
+    def create_enrollment
+        puts "Please enter the ID of the course you want to enroll in."
+        answer = gets.chomp
+        Enrollment.create(student: Student.find(@student.id), course: Course.find(answer))
+        puts "Enrollment completed"
+        main_menu
+    end
+
+    def enrolled_student
+        courses = Enrollment.select {|enrollment_instance| enrollment_instance.student_id == @student.id}
+        all_courses = courses.map  {|course_instance| course_instance.course}
+        newer = all_courses.map {|course_ins|
+        puts "----------------------------------------------------"
+        puts "ID: #{course_ins.id}"
+        puts "Description: #{course_ins.description}"
+        puts "Subject: #{course_ins.subject}"
+        puts "----------------------------------------------------"}
+    end
+
+    def delete_enrollment
+        puts enrolled_student
+        puts "Please enter the ID of the course you want to delete"
+        answer = gets.chomp
+        @student.courses.destroy(answer)
+        puts "You have sucessfully been removed from the course."
+        main_menu
+    end
 end
