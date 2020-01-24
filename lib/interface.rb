@@ -42,8 +42,8 @@ class Interface
 
             if choice_input.to_i == choice_option[0]
                  if Enrollment.find_by(student_id: @student)  
+                    system "clear"
                     puts "Here are all your courses you're enrolled in"
-                        system "clear"
                         enrolled_student
                         main_menu
                  else
@@ -52,6 +52,7 @@ class Interface
                  end
 
             elsif choice_input.to_i == choice_option[1]
+                system "clear"
                 puts "Here are all available courses for enrollment."
                 sleep(2)
                 list_all_courses
@@ -59,10 +60,12 @@ class Interface
                 create_enrollment
 
             elsif choice_input.to_i == choice_option[2]
+                system "clear"
                 puts "Which course would you like to remove yourself from?"
                 delete_enrollment
 
             elsif choice_input.to_i == choice_option[3]
+                system "clear"
                 update_courses
 
 
@@ -100,7 +103,8 @@ class Interface
     def enrolled_student
         courses = Enrollment.select {|enrollment_instance| enrollment_instance.student_id == @student.id}
         all_courses = courses.map  {|course_instance| course_instance.course}
-        newer = all_courses.map {|course_ins|
+        all_courses.uniq 
+        newer = all_courses.uniq.map {|course_ins|
         puts "----------------------------------------------------"
         puts "ID: #{course_ins.id}"
         puts "Description: #{course_ins.description}"
@@ -119,7 +123,7 @@ class Interface
 
     def update_courses
         enrolled_student
-        puts "Please enter the ID of the course you want to update"
+        puts "Please enter the ID of the course you woudl like to update"
         answer = gets.chomp
         system "clear"
         sleep(2)
